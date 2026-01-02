@@ -90,7 +90,12 @@ const UserPortal = () => {
     setProgress(100);
     
     setPhase('complete');
-  }, []);
+    
+    // Auto-submit to network after 2 seconds
+    setTimeout(() => {
+      navigate('/official');
+    }, 2000);
+  }, [navigate]);
 
   const resetScan = () => {
     setPhase('idle');
@@ -236,8 +241,8 @@ const UserPortal = () => {
             </div>
           )}
 
-          {phase === 'complete' && sensorData && energyCalc && fftResult && verification && (
-            <div className="w-full max-w-4xl space-y-6">
+          {phase === 'complete' && sensorData && energyCalc && fftResult && (
+            <div className="w-full max-w-lg space-y-6">
               <div className="text-center mb-8">
                 <h2 className="text-2xl font-bold text-foreground mb-2">Scan Complete</h2>
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-energy-useful/10 text-energy-useful">
@@ -246,135 +251,62 @@ const UserPortal = () => {
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-3 gap-6">
+              <div className="grid grid-cols-1 gap-4">
                 {/* Kinetic Energy */}
                 <div className="glass rounded-2xl p-6 border border-primary/20">
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
                       <Activity className="w-5 h-5 text-primary" />
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <p className="text-sm text-muted-foreground">Kinetic Energy</p>
                       <p className="text-2xl font-bold text-primary">{energyCalc.kineticEnergy.toFixed(3)} J</p>
                     </div>
-                  </div>
-                  <div className="text-xs text-muted-foreground">
-                    From accelerometer FFT @ {fftResult.dominantFrequency.toFixed(1)} Hz
+                    <div className="text-xs text-muted-foreground text-right">
+                      FFT @ {fftResult.dominantFrequency.toFixed(1)} Hz
+                    </div>
                   </div>
                 </div>
 
                 {/* Thermal Energy */}
                 <div className="glass rounded-2xl p-6 border border-secondary/20">
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-secondary/10 flex items-center justify-center">
                       <Thermometer className="w-5 h-5 text-secondary" />
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <p className="text-sm text-muted-foreground">Thermal Energy</p>
                       <p className="text-2xl font-bold text-secondary">{energyCalc.thermalEnergy.toFixed(3)} J</p>
                     </div>
-                  </div>
-                  <div className="text-xs text-muted-foreground">
-                    ΔT = {sensorData.thermal.delta.toFixed(1)}°C from baseline
+                    <div className="text-xs text-muted-foreground text-right">
+                      ΔT = {sensorData.thermal.delta.toFixed(1)}°C
+                    </div>
                   </div>
                 </div>
 
                 {/* Useful Energy */}
                 <div className="glass rounded-2xl p-6 border border-energy-useful/20 bg-energy-useful/5">
-                  <div className="flex items-center gap-3 mb-4">
+                  <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-energy-useful/10 flex items-center justify-center">
                       <Zap className="w-5 h-5 text-energy-useful" />
                     </div>
-                    <div>
+                    <div className="flex-1">
                       <p className="text-sm text-muted-foreground">Useful Energy</p>
                       <p className="text-2xl font-bold text-energy-useful">{energyCalc.usefulEnergy.toFixed(3)} J</p>
                     </div>
-                  </div>
-                  <div className="text-xs text-muted-foreground">
-                    Kinetic - Thermal losses ({energyCalc.efficiency}% efficient)
-                  </div>
-                </div>
-              </div>
-
-              {/* Verification Layers */}
-              <div className="glass rounded-2xl p-6">
-                <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
-                  <Cpu className="w-5 h-5 text-primary" />
-                  Four-Layer Verification
-                </h3>
-                
-                <div className="grid md:grid-cols-4 gap-4">
-                  {/* Physics Gate */}
-                  <div className={`p-4 rounded-xl ${verification.physicsGate.passed ? 'bg-energy-useful/10 border border-energy-useful/30' : 'bg-destructive/10 border border-destructive/30'}`}>
-                    <div className="flex items-center gap-2 mb-2">
-                      {verification.physicsGate.passed ? (
-                        <CheckCircle2 className="w-5 h-5 text-energy-useful" />
-                      ) : (
-                        <XCircle className="w-5 h-5 text-destructive" />
-                      )}
-                      <span className="font-medium">Physics Gate</span>
-                    </div>
-                    <div className="text-xs text-muted-foreground space-y-1">
-                      <p>RMS: {verification.physicsGate.rmsCheck ? '✓' : '✗'} Threshold</p>
-                      <p>FFT: {verification.physicsGate.fftCheck ? '✓' : '✗'} Harmonic</p>
-                    </div>
-                  </div>
-
-                  {/* Context Gate */}
-                  <div className={`p-4 rounded-xl ${verification.contextGate.passed ? 'bg-energy-useful/10 border border-energy-useful/30' : 'bg-energy-medium/10 border border-energy-medium/30'}`}>
-                    <div className="flex items-center gap-2 mb-2">
-                      {verification.contextGate.passed ? (
-                        <CheckCircle2 className="w-5 h-5 text-energy-useful" />
-                      ) : (
-                        <AlertCircle className="w-5 h-5 text-energy-medium" />
-                      )}
-                      <span className="font-medium">Context Gate</span>
-                    </div>
-                    <div className="text-xs text-muted-foreground space-y-1">
-                      <p>Duration: {verification.contextGate.duration}s</p>
-                      <p>Speed: {verification.contextGate.speedCheck ? '✓' : '✗'} &lt;15 km/h</p>
-                    </div>
-                  </div>
-
-                  {/* Social Gate */}
-                  <div className={`p-4 rounded-xl ${verification.socialGate.passed ? 'bg-energy-useful/10 border border-energy-useful/30' : 'bg-energy-medium/10 border border-energy-medium/30'}`}>
-                    <div className="flex items-center gap-2 mb-2">
-                      {verification.socialGate.passed ? (
-                        <CheckCircle2 className="w-5 h-5 text-energy-useful" />
-                      ) : (
-                        <AlertCircle className="w-5 h-5 text-energy-medium" />
-                      )}
-                      <span className="font-medium">Social Gate</span>
-                    </div>
-                    <div className="text-xs text-muted-foreground space-y-1">
-                      <p>{verification.socialGate.uniqueUsers} unique users</p>
-                      <p>{verification.socialGate.gridFrequency} readings here</p>
-                    </div>
-                  </div>
-
-                  {/* Confidence Score */}
-                  <div className="p-4 rounded-xl bg-primary/10 border border-primary/30">
-                    <div className="flex items-center gap-2 mb-2">
-                      <span className="font-medium">Confidence</span>
-                    </div>
-                    <div className="text-3xl font-bold text-primary">
-                      {verification.overallConfidence}%
-                    </div>
-                    <div className="text-xs text-muted-foreground">
-                      Overall reliability
+                    <div className="text-xs text-muted-foreground text-right">
+                      {energyCalc.efficiency}% efficient
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Action buttons */}
-              <div className="flex justify-center gap-4">
-                <Button variant="outline" onClick={resetScan}>
-                  Scan Again
-                </Button>
-                <Button variant="energy" onClick={() => navigate('/')}>
-                  Submit to Network
-                </Button>
+              {/* Auto-submit indicator */}
+              <div className="text-center mt-8">
+                <div className="inline-flex items-center gap-2 text-muted-foreground">
+                  <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+                  <span className="text-sm">Submitting to network...</span>
+                </div>
               </div>
             </div>
           )}
