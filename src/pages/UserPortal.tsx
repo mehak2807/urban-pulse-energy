@@ -1,9 +1,10 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { useToast } from '@/hooks/use-toast';
 import { 
-  Zap, ArrowLeft, Activity, Thermometer, Cpu, 
-  CheckCircle2, XCircle, AlertCircle, Wifi
+  Zap, ArrowLeft, Activity, Thermometer, 
+  CheckCircle2, Wifi
 } from 'lucide-react';
 import { 
   generateSimulatedSensorData, 
@@ -17,6 +18,7 @@ type ScanPhase = 'idle' | 'connecting' | 'scanning' | 'processing' | 'complete';
 
 const UserPortal = () => {
   const navigate = useNavigate();
+  const { toast } = useToast();
   const [phase, setPhase] = useState<ScanPhase>('idle');
   const [progress, setProgress] = useState(0);
   const [sensorData, setSensorData] = useState<SensorData | null>(null);
@@ -91,11 +93,12 @@ const UserPortal = () => {
     
     setPhase('complete');
     
-    // Auto-submit to network after 2 seconds
-    setTimeout(() => {
-      navigate('/official');
-    }, 2000);
-  }, [navigate]);
+    // Show toast notification
+    toast({
+      title: "Submitted to Network",
+      description: "Your scan data has been sent to the UrbanPulse network.",
+    });
+  }, [toast]);
 
   const resetScan = () => {
     setPhase('idle');
@@ -301,12 +304,11 @@ const UserPortal = () => {
                 </div>
               </div>
 
-              {/* Auto-submit indicator */}
-              <div className="text-center mt-8">
-                <div className="inline-flex items-center gap-2 text-muted-foreground">
-                  <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin" />
-                  <span className="text-sm">Submitting to network...</span>
-                </div>
+              {/* Scan Again button */}
+              <div className="flex justify-center mt-8">
+                <Button variant="energy" onClick={resetScan} className="px-8">
+                  Scan Again
+                </Button>
               </div>
             </div>
           )}
