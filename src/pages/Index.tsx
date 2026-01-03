@@ -9,11 +9,9 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background energy-grid relative overflow-hidden">
-      {/* Animated background elements */}
+      {/* Subtle background element */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '-3s' }} />
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-accent/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '-1.5s' }} />
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-muted/20 rounded-full blur-3xl" />
       </div>
 
       <div className="relative z-10 container mx-auto px-4 py-8 min-h-screen flex flex-col">
@@ -71,8 +69,8 @@ const Index = () => {
               onClick={() => navigate('/user')}
               onMouseEnter={() => setHoveredRole('user')}
               onMouseLeave={() => setHoveredRole(null)}
-              className={`group relative glass rounded-3xl p-8 text-left transition-all duration-500 border-2 ${
-                hoveredRole === 'user' ? 'border-primary shadow-[0_0_40px_hsl(175_84%_50%/0.3)]' : 'border-border'
+            className={`group relative glass rounded-3xl p-8 text-left transition-all duration-300 border ${
+                hoveredRole === 'user' ? 'border-primary/50' : 'border-border'
               }`}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -106,8 +104,8 @@ const Index = () => {
               onClick={() => navigate('/official')}
               onMouseEnter={() => setHoveredRole('official')}
               onMouseLeave={() => setHoveredRole(null)}
-              className={`group relative glass rounded-3xl p-8 text-left transition-all duration-500 border-2 ${
-                hoveredRole === 'official' ? 'border-secondary shadow-[0_0_40px_hsl(35_95%_55%/0.3)]' : 'border-border'
+            className={`group relative glass rounded-3xl p-8 text-left transition-all duration-300 border ${
+                hoveredRole === 'official' ? 'border-secondary/50' : 'border-border'
               }`}
             >
               <div className="absolute inset-0 bg-gradient-to-br from-secondary/10 to-transparent rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity" />

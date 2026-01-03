@@ -6,69 +6,63 @@
 
 @layer base {
   :root {
-    /* Core palette - Dark futuristic theme */
-    --background: 222 47% 6%;
-    --foreground: 210 40% 96%;
+    /* Core palette - Minimal dark theme */
+    --background: 220 20% 6%;
+    --foreground: 220 10% 85%;
 
-    --card: 222 47% 9%;
-    --card-foreground: 210 40% 96%;
+    --card: 220 20% 9%;
+    --card-foreground: 220 10% 85%;
 
-    --popover: 222 47% 8%;
-    --popover-foreground: 210 40% 96%;
+    --popover: 220 20% 8%;
+    --popover-foreground: 220 10% 85%;
 
-    /* Energy cyan/teal - Primary brand */
-    --primary: 175 84% 50%;
-    --primary-foreground: 222 47% 6%;
+    /* Muted cyan - Primary */
+    --primary: 180 30% 45%;
+    --primary-foreground: 220 20% 6%;
 
-    /* Warm amber - Secondary/heat energy */
-    --secondary: 35 95% 55%;
-    --secondary-foreground: 222 47% 6%;
+    /* Muted warm - Secondary */
+    --secondary: 35 25% 45%;
+    --secondary-foreground: 220 20% 6%;
 
     /* Muted surfaces */
-    --muted: 222 30% 15%;
-    --muted-foreground: 215 20% 55%;
+    --muted: 220 15% 14%;
+    --muted-foreground: 220 10% 50%;
 
-    /* Accent - Electric violet */
-    --accent: 265 85% 65%;
-    --accent-foreground: 210 40% 98%;
+    /* Muted accent */
+    --accent: 220 20% 18%;
+    --accent-foreground: 220 10% 85%;
 
-    --destructive: 0 72% 55%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 40% 45%;
+    --destructive-foreground: 220 10% 90%;
 
-    --border: 222 30% 18%;
-    --input: 222 30% 18%;
-    --ring: 175 84% 50%;
+    --border: 220 15% 16%;
+    --input: 220 15% 16%;
+    --ring: 180 30% 45%;
 
     --radius: 0.75rem;
 
-    /* Custom energy colors */
-    --energy-kinetic: 175 84% 50%;
-    --energy-thermal: 35 95% 55%;
-    --energy-useful: 145 80% 50%;
-    --energy-low: 200 60% 40%;
-    --energy-medium: 45 90% 55%;
-    --energy-high: 0 75% 55%;
-
-    /* Gradients */
-    --gradient-energy: linear-gradient(135deg, hsl(175 84% 50%) 0%, hsl(145 80% 50%) 100%);
-    --gradient-heat: linear-gradient(135deg, hsl(35 95% 55%) 0%, hsl(0 75% 55%) 100%);
-    --gradient-dark: linear-gradient(180deg, hsl(222 47% 9%) 0%, hsl(222 47% 4%) 100%);
-    --gradient-glow: radial-gradient(circle, hsl(175 84% 50% / 0.2) 0%, transparent 70%);
+    /* Custom energy colors - muted */
+    --energy-kinetic: 180 30% 45%;
+    --energy-thermal: 35 25% 45%;
+    --energy-useful: 150 30% 40%;
+    --energy-low: 200 20% 35%;
+    --energy-medium: 45 30% 45%;
+    --energy-high: 0 30% 45%;
 
     /* Shadows */
-    --shadow-glow: 0 0 40px hsl(175 84% 50% / 0.3);
-    --shadow-card: 0 10px 40px hsl(222 47% 2% / 0.5);
-    --shadow-button: 0 4px 20px hsl(175 84% 50% / 0.25);
+    --shadow-glow: 0 0 30px hsl(180 30% 45% / 0.15);
+    --shadow-card: 0 10px 40px hsl(220 20% 2% / 0.5);
+    --shadow-button: 0 4px 20px hsl(180 30% 45% / 0.1);
 
     /* Sidebar */
-    --sidebar-background: 222 47% 8%;
-    --sidebar-foreground: 210 40% 96%;
-    --sidebar-primary: 175 84% 50%;
-    --sidebar-primary-foreground: 222 47% 6%;
-    --sidebar-accent: 222 30% 15%;
-    --sidebar-accent-foreground: 210 40% 96%;
-    --sidebar-border: 222 30% 18%;
-    --sidebar-ring: 175 84% 50%;
+    --sidebar-background: 220 20% 8%;
+    --sidebar-foreground: 220 10% 85%;
+    --sidebar-primary: 180 30% 45%;
+    --sidebar-primary-foreground: 220 20% 6%;
+    --sidebar-accent: 220 15% 14%;
+    --sidebar-accent-foreground: 220 10% 85%;
+    --sidebar-border: 220 15% 16%;
+    --sidebar-ring: 180 30% 45%;
   }
 }
 
@@ -97,19 +91,7 @@
   }
 
   .glow-text {
-    text-shadow: 0 0 30px hsl(175 84% 50% / 0.5);
-  }
-
-  .gradient-energy {
-    background: var(--gradient-energy);
-  }
-
-  .gradient-heat {
-    background: var(--gradient-heat);
-  }
-
-  .gradient-dark {
-    background: var(--gradient-dark);
+    text-shadow: 0 0 20px hsl(180 30% 45% / 0.3);
   }
 
   .animate-pulse-glow {
@@ -126,10 +108,10 @@
 
   @keyframes pulse-glow {
     0%, 100% {
-      box-shadow: 0 0 20px hsl(175 84% 50% / 0.3);
+      box-shadow: 0 0 15px hsl(180 30% 45% / 0.15);
     }
     50% {
-      box-shadow: 0 0 60px hsl(175 84% 50% / 0.6);
+      box-shadow: 0 0 30px hsl(180 30% 45% / 0.25);
     }
   }
 
@@ -157,15 +139,15 @@
   }
 
   .glass {
-    background: hsl(222 47% 9% / 0.8);
+    background: hsl(220 20% 9% / 0.9);
     backdrop-filter: blur(20px);
-    border: 1px solid hsl(222 30% 18% / 0.5);
+    border: 1px solid hsl(220 15% 16% / 0.6);
   }
 
   .energy-grid {
     background-image: 
-      linear-gradient(hsl(175 84% 50% / 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(175 84% 50% / 0.03) 1px, transparent 1px);
+      linear-gradient(hsl(180 30% 45% / 0.02) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(180 30% 45% / 0.02) 1px, transparent 1px);
     background-size: 50px 50px;
   }
 }
