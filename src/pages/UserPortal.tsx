@@ -155,17 +155,16 @@ const UserPortal = () => {
                 onClick={startScan}
                 className="relative group"
               >
-                <div className="absolute inset-0 bg-primary/20 rounded-full blur-2xl group-hover:bg-primary/30 transition-colors" />
-                <div className="relative w-48 h-48 rounded-full bg-gradient-to-br from-primary via-accent to-secondary flex items-center justify-center shadow-[0_0_60px_hsl(175_84%_50%/0.4)] group-hover:shadow-[0_0_80px_hsl(175_84%_50%/0.6)] transition-all group-hover:scale-105 active:scale-95">
-                  <div className="w-44 h-44 rounded-full bg-card flex flex-col items-center justify-center">
+                <div className="relative w-48 h-48 rounded-full border-2 border-primary/40 flex items-center justify-center group-hover:border-primary/60 transition-all group-hover:scale-105 active:scale-95">
+                  <div className="w-44 h-44 rounded-full bg-card border border-border flex flex-col items-center justify-center">
                     <Zap className="w-12 h-12 text-primary mb-2" />
                     <span className="text-lg font-bold text-foreground">START SCAN</span>
                   </div>
                 </div>
                 
                 {/* Pulse rings */}
-                <div className="absolute inset-0 rounded-full border-2 border-primary/30 animate-pulse-ring" />
-                <div className="absolute inset-0 rounded-full border-2 border-primary/20 animate-pulse-ring" style={{ animationDelay: '-0.5s' }} />
+                <div className="absolute inset-0 rounded-full border border-primary/20 animate-pulse-ring" />
+                <div className="absolute inset-0 rounded-full border border-primary/10 animate-pulse-ring" style={{ animationDelay: '-0.5s' }} />
               </button>
             </div>
           )}
