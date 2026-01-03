@@ -2,67 +2,62 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    /* Core palette - Minimal dark theme */
-    --background: 220 20% 6%;
-    --foreground: 220 10% 85%;
+    /* Clean light theme */
+    --background: 0 0% 98%;
+    --foreground: 220 15% 15%;
 
-    --card: 220 20% 9%;
-    --card-foreground: 220 10% 85%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 15% 15%;
 
-    --popover: 220 20% 8%;
-    --popover-foreground: 220 10% 85%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 15% 15%;
 
-    /* Muted cyan - Primary */
-    --primary: 180 30% 45%;
-    --primary-foreground: 220 20% 6%;
+    /* Subtle teal primary */
+    --primary: 175 40% 40%;
+    --primary-foreground: 0 0% 100%;
 
-    /* Muted warm - Secondary */
-    --secondary: 35 25% 45%;
-    --secondary-foreground: 220 20% 6%;
+    /* Warm gray secondary */
+    --secondary: 220 10% 94%;
+    --secondary-foreground: 220 15% 25%;
 
-    /* Muted surfaces */
-    --muted: 220 15% 14%;
-    --muted-foreground: 220 10% 50%;
+    /* Muted */
+    --muted: 220 10% 96%;
+    --muted-foreground: 220 10% 45%;
 
-    /* Muted accent */
-    --accent: 220 20% 18%;
-    --accent-foreground: 220 10% 85%;
+    /* Accent */
+    --accent: 220 10% 94%;
+    --accent-foreground: 220 15% 15%;
 
-    --destructive: 0 40% 45%;
-    --destructive-foreground: 220 10% 90%;
+    --destructive: 0 65% 50%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 220 15% 16%;
-    --input: 220 15% 16%;
-    --ring: 180 30% 45%;
+    --border: 220 10% 90%;
+    --input: 220 10% 90%;
+    --ring: 175 40% 40%;
 
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    /* Custom energy colors - muted */
-    --energy-kinetic: 180 30% 45%;
-    --energy-thermal: 35 25% 45%;
-    --energy-useful: 150 30% 40%;
-    --energy-low: 200 20% 35%;
-    --energy-medium: 45 30% 45%;
-    --energy-high: 0 30% 45%;
-
-    /* Shadows */
-    --shadow-glow: 0 0 30px hsl(180 30% 45% / 0.15);
-    --shadow-card: 0 10px 40px hsl(220 20% 2% / 0.5);
-    --shadow-button: 0 4px 20px hsl(180 30% 45% / 0.1);
+    /* Energy colors - muted */
+    --energy-kinetic: 175 40% 40%;
+    --energy-thermal: 30 50% 50%;
+    --energy-useful: 145 40% 40%;
+    --energy-low: 200 30% 50%;
+    --energy-medium: 40 50% 50%;
+    --energy-high: 0 50% 50%;
 
     /* Sidebar */
-    --sidebar-background: 220 20% 8%;
-    --sidebar-foreground: 220 10% 85%;
-    --sidebar-primary: 180 30% 45%;
-    --sidebar-primary-foreground: 220 20% 6%;
-    --sidebar-accent: 220 15% 14%;
-    --sidebar-accent-foreground: 220 10% 85%;
-    --sidebar-border: 220 15% 16%;
-    --sidebar-ring: 180 30% 45%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 220 15% 15%;
+    --sidebar-primary: 175 40% 40%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 10% 96%;
+    --sidebar-accent-foreground: 220 15% 15%;
+    --sidebar-border: 220 10% 90%;
+    --sidebar-ring: 175 40% 40%;
   }
 }
 
@@ -73,81 +68,18 @@
 
   body {
     @apply bg-background text-foreground font-sans antialiased;
-    font-family: 'Outfit', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Outfit', sans-serif;
-  }
-
-  code, pre, .mono {
-    font-family: 'JetBrains Mono', monospace;
+    font-family: 'Inter', sans-serif;
   }
 }
 
 @layer utilities {
-  .glow-primary {
-    box-shadow: var(--shadow-glow);
-  }
-
-  .glow-text {
-    text-shadow: 0 0 20px hsl(180 30% 45% / 0.3);
-  }
-
-  .animate-pulse-glow {
-    animation: pulse-glow 2s ease-in-out infinite;
-  }
-
-  .animate-scan {
-    animation: scan 2s ease-in-out infinite;
-  }
-
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  @keyframes pulse-glow {
-    0%, 100% {
-      box-shadow: 0 0 15px hsl(180 30% 45% / 0.15);
-    }
-    50% {
-      box-shadow: 0 0 30px hsl(180 30% 45% / 0.25);
-    }
-  }
-
-  @keyframes scan {
-    0% {
-      transform: translateY(-100%);
-      opacity: 0;
-    }
-    50% {
-      opacity: 1;
-    }
-    100% {
-      transform: translateY(100%);
-      opacity: 0;
-    }
-  }
-
-  @keyframes float {
-    0%, 100% {
-      transform: translateY(0px);
-    }
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
   .glass {
-    background: hsl(220 20% 9% / 0.9);
-    backdrop-filter: blur(20px);
-    border: 1px solid hsl(220 15% 16% / 0.6);
-  }
-
-  .energy-grid {
-    background-image: 
-      linear-gradient(hsl(180 30% 45% / 0.02) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(180 30% 45% / 0.02) 1px, transparent 1px);
-    background-size: 50px 50px;
+    background: hsl(0 0% 100% / 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid hsl(220 10% 90%);
   }
 }
