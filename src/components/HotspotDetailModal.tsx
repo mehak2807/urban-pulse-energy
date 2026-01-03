@@ -1,8 +1,6 @@
 import { HotspotData } from '@/types/energy';
 import { Button } from '@/components/ui/button';
-import { 
-  X, MapPin, Users, Zap, Brain, TrendingUp, Clock, CheckCircle2 
-} from 'lucide-react';
+import { X, MapPin, Brain, Clock, CheckCircle2 } from 'lucide-react';
 
 interface HotspotDetailModalProps {
   hotspot: HotspotData;
@@ -83,35 +81,6 @@ const HotspotDetailModal = ({ hotspot, onClose }: HotspotDetailModalProps) => {
             </div>
           )}
 
-          {/* Progress Bars */}
-          <div className="space-y-3">
-            <div>
-              <div className="flex items-center justify-between mb-1">
-                <span className="text-xs text-muted-foreground">Suitability</span>
-                <span className="text-xs font-medium">{hotspot.metrics.suitabilityScore}%</span>
-              </div>
-              <div className="h-2 bg-muted rounded-full overflow-hidden">
-                <div 
-                  className="h-full bg-primary rounded-full"
-                  style={{ width: `${hotspot.metrics.suitabilityScore}%` }}
-                />
-              </div>
-            </div>
-            
-            <div>
-              <div className="flex items-center justify-between mb-1">
-                <span className="text-xs text-muted-foreground">Confidence</span>
-                <span className="text-xs font-medium">{hotspot.metrics.confidence}%</span>
-              </div>
-              <div className="h-2 bg-muted rounded-full overflow-hidden">
-                <div 
-                  className="h-full bg-energy-useful rounded-full"
-                  style={{ width: `${hotspot.metrics.confidence}%` }}
-                />
-              </div>
-            </div>
-          </div>
-
           {/* Verification */}
           <div className="grid grid-cols-2 gap-2">
             <div className="flex items-center gap-2 p-2 rounded bg-energy-useful/10 border border-energy-useful/20 text-xs">
@@ -132,32 +101,6 @@ const HotspotDetailModal = ({ hotspot, onClose }: HotspotDetailModalProps) => {
             </div>
           </div>
 
-          {/* Recommendation */}
-          <div className="bg-muted/30 p-4 rounded-lg border border-border">
-            <div className="flex items-center gap-2 mb-2">
-              <TrendingUp className="w-4 h-4 text-primary" />
-              <h3 className="text-sm font-medium text-foreground">Recommendation</h3>
-            </div>
-            
-            <div className="text-sm text-muted-foreground space-y-1">
-              {hotspot.metrics.suitabilityScore >= 90 ? (
-                <>
-                  <p>• Priority 1: Deploy piezoelectric tiles</p>
-                  <p>• Est. ROI: 2.5-3 years</p>
-                </>
-              ) : hotspot.metrics.suitabilityScore >= 80 ? (
-                <>
-                  <p>• Priority 2: Conduct professional audit</p>
-                  <p>• Pilot installation recommended</p>
-                </>
-              ) : (
-                <>
-                  <p>• Continue data collection</p>
-                  <p>• Re-evaluate in 30 days</p>
-                </>
-              )}
-            </div>
-          </div>
         </div>
 
         {/* Footer */}
