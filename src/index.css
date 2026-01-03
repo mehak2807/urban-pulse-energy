@@ -6,42 +6,43 @@
 
 @layer base {
   :root {
-    /* Clean light theme */
-    --background: 0 0% 98%;
-    --foreground: 220 15% 15%;
+    /* White/light theme */
+    --background: 0 0% 100%;           /* pure white page background */
+    --foreground: 220 15% 10%;         /* dark text for contrast */
 
-    --card: 0 0% 100%;
-    --card-foreground: 220 15% 15%;
+    --card: 0 0% 100%;                 /* card/panel background */
+    --card-foreground: 220 15% 10%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 15% 15%;
+    --popover-foreground: 220 15% 10%;
 
-    /* Subtle teal primary */
+    /* Primary (kept teal-ish) */
     --primary: 175 40% 40%;
     --primary-foreground: 0 0% 100%;
 
-    /* Warm gray secondary */
-    --secondary: 220 10% 94%;
-    --secondary-foreground: 220 15% 25%;
+    /* Secondary (very light surface) */
+    --secondary: 220 10% 98%;
+    --secondary-foreground: 220 15% 35%;
 
     /* Muted */
-    --muted: 220 10% 96%;
-    --muted-foreground: 220 10% 45%;
+    --muted: 220 10% 97%;
+    --muted-foreground: 220 10% 50%;
 
     /* Accent */
-    --accent: 220 10% 94%;
+    --accent: 220 10% 96%;
     --accent-foreground: 220 15% 15%;
 
     --destructive: 0 65% 50%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 10% 90%;
-    --input: 220 10% 90%;
+    /* Borders, inputs, rings */
+    --border: 220 10% 92%;
+    --input: 220 10% 94%;
     --ring: 175 40% 40%;
 
     --radius: 0.5rem;
 
-    /* Energy colors - muted */
+    /* Energy colors */
     --energy-kinetic: 175 40% 40%;
     --energy-thermal: 30 50% 50%;
     --energy-useful: 145 40% 40%;
@@ -51,12 +52,12 @@
 
     /* Sidebar */
     --sidebar-background: 0 0% 100%;
-    --sidebar-foreground: 220 15% 15%;
+    --sidebar-foreground: 220 15% 10%;
     --sidebar-primary: 175 40% 40%;
     --sidebar-primary-foreground: 0 0% 100%;
     --sidebar-accent: 220 10% 96%;
     --sidebar-accent-foreground: 220 15% 15%;
-    --sidebar-border: 220 10% 90%;
+    --sidebar-border: 220 10% 92%;
     --sidebar-ring: 175 40% 40%;
   }
 }
@@ -78,8 +79,8 @@
 
 @layer utilities {
   .glass {
-    background: hsl(0 0% 100% / 0.8);
+    background: hsl(0 0% 100% / 0.85);
     backdrop-filter: blur(10px);
-    border: 1px solid hsl(220 10% 90%);
+    border: 1px solid hsl(var(--border));
   }
 }
